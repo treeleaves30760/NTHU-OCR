@@ -8,7 +8,7 @@ if (document.readyState === "loading") {
 function initCaptchaFill() {
 	console.log("開始執行驗證碼填入功能");
 
-	// Find the captcha image and input field for both websites
+	// Find the captcha image and input field
 	const captchaImg =
 		document.querySelector('img[src^="auth_img.php"]') ||
 		document.querySelector("#captcha_image");
@@ -39,6 +39,8 @@ function initCaptchaFill() {
 			console.log("開始OCR識別");
 			Tesseract.recognize(canvas.toDataURL(), "eng", {
 				logger: (m) => console.log("Tesseract進度:", m),
+				tessedit_char_whitelist: "0123456789",
+				tessedit_pageseg_mode: "7", // Treat the image as a single text line
 			})
 				.then(({ data: { text } }) => {
 					console.log("OCR識別結果:", text);
@@ -47,25 +49,9 @@ function initCaptchaFill() {
 					let captchaText = text.replace(/[^0-9]/g, "");
 					console.log("清理後的驗證碼:", captchaText);
 
-					// Ensure we don't exceed the maxlength (if specified)
-					const maxLength = captchaInput.getAttribute("maxlength");
-					if (maxLength) {
-						captchaText = captchaText.substring(
-							0,
-							parseInt(maxLength)
-						);
-						console.log("調整長度後的驗證碼:", captchaText);
-					}
-
-					// Fill in the captcha using different methods
+					// Fill in the captcha
 					captchaInput.value = captchaText;
-					console.log("使用value屬性填入驗證碼");
-
-					captchaInput.setAttribute("value", captchaText);
-					console.log("使用setAttribute填入驗證碼");
-
-					captchaInput.defaultValue = captchaText;
-					console.log("使用defaultValue填入驗證碼");
+					console.log("填入驗證碼:", captchaText);
 
 					// Trigger events
 					captchaInput.dispatchEvent(
