@@ -6,14 +6,14 @@
 	"permissions": ["activeTab"],
 	"content_scripts": [
 		{
-			"matches": ["https://www.ccxp.nthu.edu.tw/*"],
+			"matches": ["https://*.ccxp.nthu.edu.tw/*"],
 			"js": ["tesseract.min.js", "content.js"]
 		}
 	],
 	"web_accessible_resources": [
 		{
 			"resources": ["tesseract.min.js"],
-			"matches": ["https://www.ccxp.nthu.edu.tw/*"]
+			"matches": ["https://*.ccxp.nthu.edu.tw/*"]
 		}
 	]
 }
