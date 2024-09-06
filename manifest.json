@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"name": "NTHU OCR",
+	"version": "1.0",
+	"description": "自動識別並填入清華大學校務系統的驗證碼",
+	"permissions": ["activeTab"],
+	"content_scripts": [
+		{
+			"matches": ["https://www.ccxp.nthu.edu.tw/*"],
+			"js": ["tesseract.min.js", "content.js"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["tesseract.min.js"],
+			"matches": ["https://www.ccxp.nthu.edu.tw/*"]
+		}
+	]
+}
