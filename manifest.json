@@ -3,13 +3,16 @@
 	"name": "NTHU OCR",
 	"version": "0.1.0",
 	"description": "自動識別並填入清華大學校務系統的驗證碼",
-	"permissions": ["activeTab"],
+	"permissions": ["activeTab", "storage"],
 	"content_scripts": [
 		{
 			"matches": ["https://*.ccxp.nthu.edu.tw/*"],
 			"js": ["tesseract.min.js", "content.js"]
 		}
 	],
+	"action": {
+		"default_popup": "popup.html"
+	},
 	"web_accessible_resources": [
 		{
 			"resources": ["tesseract.min.js"],
