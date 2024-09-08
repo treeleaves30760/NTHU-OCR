@@ -50,7 +50,7 @@ function initCaptchaFill() {
 					captchaImages: [originalImageData, ...preprocessedImages],
 				},
 				function () {
-					console.log("圖像數據已保存到 Chrome storage");
+					console.log("圖像數據已保存到 Chrome local storage");
 				}
 			);
 
@@ -61,7 +61,6 @@ function initCaptchaFill() {
 			Tesseract.recognize(finalProcessedImage, "eng", {
 				logger: (m) => console.log("Tesseract進度:", m),
 				tessedit_char_whitelist: "0123456789",
-				// tessedit_pageseg_mode: "7", // 將圖像視為單行文本
 				tessedit_ocr_engine_mode: 2, // 使用 LSTM OCR 引擎
 				preserve_interword_spaces: "0", // 不保留單詞間的空格
 				tessedit_font_name: "Microsoft+", // 使用適合數字的字體
