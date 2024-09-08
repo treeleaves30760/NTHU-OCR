@@ -7,7 +7,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*.ccxp.nthu.edu.tw/*"],
-			"js": ["tesseract.min.js", "content.js"]
+			"js": ["tesseract.min.js", "content.js", "ocard.js"]
 		}
 	],
 	"action": {
